@@ -16,6 +16,9 @@ const colors = {
  * You can reference properties from other components.
  */
 const palette = {
+  /**
+   * This is content background
+   */
   contentBackground: colors.white,
   text: colors.black,
   caption: colors.purple,

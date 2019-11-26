@@ -204,6 +204,7 @@ export abstract class Compiler<
 
     const targetComponent = this.createTargetComponent(name);
     const serializedData = serialize(instance);
+    const metadata = this.parser.getMetadataForTypeOrThrow(name);
 
     for (const property of component.properties) {
       // TODO: move this check upstream of the compiler, into the compiler metadata stream where it belongs.
@@ -212,9 +213,12 @@ export abstract class Compiler<
         instance.options[property.name] &&
         Array.isArray(instance.options[property.name].targets) &&
         !instance.options[property.name].targets.includes(this.parser.options.target)
-      ) {
-        // We are looking at a property that is either not a state or explicitly excluded by the host.
+        ) {
+          // We are looking at a property that is either not a state or explicitly excluded by the host.
         continue;
+      }
+      if (property.references.length) {
+        console.log(property.type.toString(), '----------------', property.references[0]);
       }
 
       const propertySpec = await this.processComponentProperty(

@@ -57,3 +57,25 @@ export const getUnitedStyleSheetVariables = (name: string, value: string) => {
     };
   });
 };
+
+export const commentHelper = (property: TargetProperty) => {
+  const commentLines: string[] = [];
+
+  if (property.description.body) {
+    commentLines.push(property.description.body);
+  }
+
+  if (property.initializer) {
+    commentLines.push(`Value: ${property.initializer}`);
+  }
+
+  if (property.references && property.references.length) {
+    commentLines.push(...property.references.map((ref) => {
+      return `${ref.parentType}.${ref.name}`;
+    }));
+  }
+
+  const parsedCommentLines = commentLines.join('\n\n');
+
+  return `/**\n${parsedCommentLines}\n*/`;
+};
