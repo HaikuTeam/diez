@@ -136,3 +136,27 @@ export interface FullDiezConfiguration {
  * See [here](https://github.com/diez/diez/blob/master/compiler/targets/.diezrc) for an example.
  */
 export type DiezConfiguration = Partial<FullDiezConfiguration>;
+
+/**
+ * Valid options that can be provided to the pager.
+ */
+export interface PagerOptions {
+  source: string;
+}
+
+/**
+ * Supported package managers
+ */
+export enum PackageManagers {
+  Npm = 'npm',
+  Yarn = 'yarn',
+}
+
+/**
+ * Describes package manager commands grouped by package manager.
+ */
+export type PackageManagerCommands = {
+  [key in PackageManagers]: {
+    [key: string]: string,
+  };
+};

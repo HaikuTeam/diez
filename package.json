@@ -19,7 +19,7 @@
     "@types/uglify-es": "^3.0.0",
     "chalk": "^2.4.2",
     "change-case": "^3.1.0",
-    "diez": "10.0.2",
+    "diez": "10.2.0",
     "enquirer": "^2.3.0",
     "fs-extra": "^7.0.1",
     "fs-walk": "^0.0.2",
@@ -44,13 +44,13 @@
     "diez": "ts-node ./node_modules/.bin/diez",
     "docs": "yarn diez generate-docs",
     "extract-lorem-ipsum": "yarn diez extract-lorem-ipsum",
-    "compile": "lerna run compile",
-    "fix": "lerna run fix --no-bail --stream",
+    "compile": "lerna run compile --stream",
+    "fix": "lerna run fix --no-bail --parallel",
     "health": "yarn diez health",
-    "lint": "lerna run lint --no-bail --stream",
+    "lint": "lerna run lint --no-bail --parallel",
     "postinstall": "yarn compile",
     "release": "yarn diez release",
-    "test": "lerna run test --stream",
+    "test": "lerna run test",
     "watch": "yarn diez watch",
     "prepublishOnly": "yarn clean",
     "prepack": "yarn diez minify-sources"
@@ -59,6 +59,6 @@
     "@types/webpack": "4.4.27",
     "istanbul-api": "^2.0.0",
     "typescript": "^3.7.2",
-    "webpack": "^4.35.0"
+    "webpack": "^4.41.2"
   }
 }

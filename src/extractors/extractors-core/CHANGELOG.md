@@ -3,6 +3,49 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.2.0](https://github.com/diez/diez/compare/v10.2.0-beta.2...v10.2.0) (2020-01-17)
+
+**Note:** Version bump only for package @diez/extractors-core
+
+
+
+
+
+# [10.2.0-beta.2](https://github.com/diez/diez/compare/v10.2.0-beta.1...v10.2.0-beta.2) (2020-01-13)
+
+**Note:** Version bump only for package @diez/extractors-core
+
+
+
+
+
+# [10.2.0-beta.1](https://github.com/diez/diez/compare/v10.2.0-beta.0...v10.2.0-beta.1) (2020-01-13)
+
+**Note:** Version bump only for package @diez/extractors-core
+
+
+
+
+
+# [10.2.0-beta.0](https://github.com/diez/diez/compare/v10.1.0...v10.2.0-beta.0) (2020-01-11)
+
+**Note:** Version bump only for package @diez/extractors-core
+
+
+
+
+
+# [10.1.0](https://github.com/diez/diez/compare/v10.0.2...v10.1.0) (2019-12-11)
+
+
+### Features
+
+* **extractors-core:** add a system to ignore non-design files ([#18](https://github.com/diez/diez/issues/18)) ([ca33041](https://github.com/diez/diez/commit/ca33041))
+
+
+
+
+
 ## [10.0.2](https://github.com/diez/diez/compare/v10.0.1...v10.0.2) (2019-11-21)
 
 **Note:** Version bump only for package @diez/extractors-core

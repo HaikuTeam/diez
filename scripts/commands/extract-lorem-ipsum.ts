@@ -120,9 +120,16 @@ export = {
         }
 
         const originalContents = readFileSync(originalQualifiedFilename);
-        const contents = isBinarySync(originalQualifiedFilename, originalContents) ?
+        let contents = isBinarySync(originalQualifiedFilename, originalContents) ?
           originalContents :
           replaceOccurrencesInString(originalContents.toString(), replacements);
+
+        if (originalRelativeFilename.includes('package.json')) {
+          contents = contents.toString()
+            .replace(/"version": "*.*"/g, '"version": "0.1.0"')
+            .replace('link', '{{designSystemLinkingProtocol}}');
+        }
+
         writeFileSync(qualifiedFilename, contents, {mode: stats.mode});
       }).on('end', resolve));
 

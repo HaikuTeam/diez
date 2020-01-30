@@ -34,6 +34,7 @@ jest.doMock('@diez/storage', () => ({
 
 import {UnauthorizedRequestException} from '@diez/cli-core';
 import {Readable} from 'stream';
+/* tslint:disable */
 import FigmaExtractor from '../../src/extractors/figma';
 
 const figma = FigmaExtractor.create('mock-token');
@@ -164,6 +165,23 @@ const mockFullResponse = {
           id: '',
           name: '',
           fills: [{
+            type: 'SOLID',
+            color: {
+              r: 0.03921568627451,
+              g: 0.03921568627451,
+              b: 0.03921568627451,
+              a: 0.5,
+            },
+          }],
+          styles: {
+            fill: 'colorWithAlpha',
+          },
+          children: [],
+        },
+        {
+          id: '',
+          name: '',
+          fills: [{
             type: 'GRADIENT_LINEAR',
             gradientHandlePositions: [
               {
@@ -243,6 +261,10 @@ const mockFullResponse = {
   styles: {
     color: {
       name: 'Diez Black',
+      styleType: 'FILL',
+    },
+    colorWithAlpha: {
+      name: 'Diez Black With Alpha',
       styleType: 'FILL',
     },
     dropShadow: {
@@ -417,6 +439,10 @@ describe('Figma', () => {
             initializer: 'Color.rgba(10, 10, 10, 1)',
             name: 'Diez Black',
           },
+          {
+            initializer: 'Color.rgba(10, 10, 10, 0.5)',
+            name: 'Diez Black With Alpha',
+          },
         ],
         gradients: [
           {
@@ -441,11 +467,11 @@ describe('Figma', () => {
           {
             name: 'Foobar Typograph',
             initializer:
-              'new Typograph({color: Color.rgba(100, 100, 100, 1), font: helloFonts.Foobar.BoldItalic, fontSize: 9001})',
+              'new Typograph({fontSize: 9001, color: Color.rgba(100, 100, 100, 1), font: helloFonts.Foobar.BoldItalic})',
           },
           {
             name: 'Gradient Typograph',
-            initializer: 'new Typograph({color: Color.rgba(255, 0, 0, 1), font: helloFonts.Foobar.BoldItalic, fontSize: 9001})',
+            initializer: 'new Typograph({fontSize: 9001, color: Color.rgba(255, 0, 0, 1), font: helloFonts.Foobar.BoldItalic})',
           },
         ],
       });

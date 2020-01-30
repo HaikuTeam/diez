@@ -4,10 +4,22 @@ import {join} from 'path';
 import {gte, parse, valid} from 'semver';
 import {root, run, runQuiet, scriptsRoot} from '../internal/helpers';
 
+interface ReleaseOptions {
+  distTag: string;
+}
+
 export = {
   name: 'release [version]',
   description: 'Creates a release.',
-  loadAction: () => async (_: {}, rawVersion: string) => {
+  options: [
+    {
+      longName: 'dist-tag',
+      description: 'Set a distribution tag in npm',
+      valueName: 'distTag',
+    },
+  ],
+  loadAction: () => async (options: ReleaseOptions, rawVersion: string) => {
+    const distTag = options.distTag || 'latest';
     const version = valid(rawVersion);
     if (!version || gte(diezVersion, version)) {
       throw new Error('Refusing to set an invalid or lower version.');
@@ -52,9 +64,6 @@ export = {
       throw new Error('Generating docs produced an error. Please fix the issue and try again.');
     }
 
-    // Upload the latest version of lorem-ipsum templates for `diez create` to the CDN.
-    run(`yarn extract-lorem-ipsum --currentVersion ${version}`);
-
     const versionsPath = join(scriptsRoot, 'data', 'diez-versions.json');
     const versions = readJsonSync(versionsPath);
     if (versions.length) {
@@ -94,6 +103,8 @@ export = {
     run('aws s3 sync api s3://diez-docs/latest');
 
     // Create the release with Lerna.
-    run(`yarn lerna publish ${version} --github-release --conventional-commits --force-publish=*`);
+    run(`yarn lerna publish ${version} --github-release --conventional-commits --force-publish=* --dist-tag ${distTag}`);
+    // Upload the latest version of lorem-ipsum templates for `diez create` to the CDN.
+    run(`yarn extract-lorem-ipsum --currentVersion ${version}`);
   },
 };

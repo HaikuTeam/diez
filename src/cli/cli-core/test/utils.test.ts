@@ -7,8 +7,9 @@ jest.doMock('child_process', () => ({
   exec: mockExec,
 }));
 
+import {ChildProcess} from 'child_process';
 import {join} from 'path';
-import {execAsync, exitTrap, findPlugins, isMacOS, canRunCommand, locateBinaryMacOS} from '../src/utils';
+import {canRunCommand, execAsync, exitTrap, findPlugins, isChildProcess, isMacOS, locateBinaryMacOS, isWindows} from '../src/utils';
 
 beforeEach(() => {
   cleanupMockOsData();
@@ -57,6 +58,12 @@ describe('utils', () => {
     expect(isMacOS()).toBe(true);
   });
 
+  test('isWindows', async () => {
+    expect(isWindows()).toBe(false);
+    mockOsData.platform = 'win32';
+    expect(isWindows()).toBe(true);
+  });
+
   test('locateBinaryMacOS', async () => {
     // This method is only allowed on macOS.
     expect(locateBinaryMacOS('com.foo.bar')).rejects.toThrow();
@@ -83,5 +90,11 @@ describe('utils', () => {
     process.emit('SIGQUIT', 'SIGQUIT');
     process.emit('SIGTSTP', 'SIGTSTP');
     expect(mock).toHaveBeenCalledTimes(5);
+  });
+
+  test('isChildProcess', () => {
+    expect(isChildProcess(new Buffer(''))).toBe(false);
+    expect(isChildProcess(void(0))).toBe(false);
+    expect(isChildProcess({kill: () => {}} as ChildProcess)).toBe(true);
   });
 });

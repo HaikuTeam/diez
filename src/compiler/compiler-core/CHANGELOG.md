@@ -3,6 +3,60 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.2.0](https://github.com/diez/diez/compare/v10.2.0-beta.2...v10.2.0) (2020-01-17)
+
+
+### Bug Fixes
+
+* **compiler:** avoid crashing if a component instance is explicitly excluded from host ([#62](https://github.com/diez/diez/issues/62)) ([830a84b](https://github.com/diez/diez/commit/830a84b))
+
+
+### Features
+
+* **compiler:** add stack traces and hints for runtime errors ([#64](https://github.com/diez/diez/issues/64)) ([65b798f](https://github.com/diez/diez/commit/65b798f))
+
+
+
+
+
+# [10.2.0-beta.2](https://github.com/diez/diez/compare/v10.2.0-beta.1...v10.2.0-beta.2) (2020-01-13)
+
+**Note:** Version bump only for package @diez/compiler-core
+
+
+
+
+
+# [10.2.0-beta.1](https://github.com/diez/diez/compare/v10.2.0-beta.0...v10.2.0-beta.1) (2020-01-13)
+
+**Note:** Version bump only for package @diez/compiler-core
+
+
+
+
+
+# [10.2.0-beta.0](https://github.com/diez/diez/compare/v10.1.0...v10.2.0-beta.0) (2020-01-11)
+
+
+### Bug Fixes
+
+* **targets:** use design language version for SDK version output ([#57](https://github.com/diez/diez/issues/57)) ([e93a9ed](https://github.com/diez/diez/commit/e93a9ed))
+
+
+
+
+
+# [10.1.0](https://github.com/diez/diez/compare/v10.0.2...v10.1.0) (2019-12-11)
+
+
+### Features
+
+* **cli:** add a prompt to remove existing watchers ([#20](https://github.com/diez/diez/issues/20)) ([2a4d5d5](https://github.com/diez/diez/commit/2a4d5d5))
+
+
+
+
+
 ## [10.0.2](https://github.com/diez/diez/compare/v10.0.1...v10.0.2) (2019-11-21)
 
 **Note:** Version bump only for package @diez/compiler-core

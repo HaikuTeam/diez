@@ -3,6 +3,57 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [10.2.0](https://github.com/diez/diez/compare/v10.2.0-beta.2...v10.2.0) (2020-01-17)
+
+
+### Features
+
+* **extractors:** add missing typograph properties in Sketch extractor ([#61](https://github.com/diez/diez/issues/61)) ([aea53cf](https://github.com/diez/diez/commit/aea53cf))
+* **extractors:** add support for AdobeXD ([#63](https://github.com/diez/diez/issues/63)) ([8c678a5](https://github.com/diez/diez/commit/8c678a5))
+
+
+
+
+
+# [10.2.0-beta.2](https://github.com/diez/diez/compare/v10.2.0-beta.1...v10.2.0-beta.2) (2020-01-13)
+
+**Note:** Version bump only for package @diez/extractors
+
+
+
+
+
+# [10.2.0-beta.1](https://github.com/diez/diez/compare/v10.2.0-beta.0...v10.2.0-beta.1) (2020-01-13)
+
+**Note:** Version bump only for package @diez/extractors
+
+
+
+
+
+# [10.2.0-beta.0](https://github.com/diez/diez/compare/v10.1.0...v10.2.0-beta.0) (2020-01-11)
+
+
+### Bug Fixes
+
+* **extractors:** support alpha values for solid colors in Figma ([#55](https://github.com/diez/diez/issues/55)) ([2153276](https://github.com/diez/diez/commit/2153276))
+
+
+
+
+
+# [10.1.0](https://github.com/diez/diez/compare/v10.0.2...v10.1.0) (2019-12-11)
+
+
+### Bug Fixes
+
+* **extractors:** check if a response exists before trying to read fields ([#19](https://github.com/diez/diez/issues/19)) ([09708a0](https://github.com/diez/diez/commit/09708a0))
+* **extractors:** explicitly import URLSearchParams to improve compat ([#46](https://github.com/diez/diez/issues/46)) ([9f46592](https://github.com/diez/diez/commit/9f46592))
+
+
+
+
+
 ## [10.0.2](https://github.com/diez/diez/compare/v10.0.1...v10.0.2) (2019-11-21)
 
 **Note:** Version bump only for package @diez/extractors
