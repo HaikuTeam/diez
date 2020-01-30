@@ -70,9 +70,7 @@ export const commentHelper = (property: TargetProperty) => {
   }
 
   if (property.references && property.references.length) {
-    commentLines.push(...property.references.map((ref) => {
-      return `${ref.parentType}.${ref.name}`;
-    }));
+    commentLines.push(...property.references.map((ref) => `${ref.parentType}.${ref.name}`));
   }
 
   const parsedCommentLines = commentLines.join('\n\n');
