@@ -14,6 +14,7 @@
 		B672C842C746C39F14BF05164B4200CA /* EmptyComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC69A8F90E63FB64A299EBE9F3E9773 /* EmptyComponent.swift */; };
 		D49AD6A8B779D833245004A344C6DF90 /* ChildComponent+Binding.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56FC23781B063907026A0F2E0697419 /* ChildComponent+Binding.swift */; };
 		EC086ECB9999A1A0D079885489E222E0 /* Static.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 209388F1C358A11F2EA60B205783F4CE /* Static.bundle */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		FBD41B0CC2B12DA22CFF7CF27D2FACD9 /* Reference.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FD3DE8044CB6A9BA6AF6F0BE6DE4DD /* Reference.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +34,7 @@
 		73AAA71D4AC30A141B96A8B77EE92194 /* Meow.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Meow.framework; sourceTree = "<group>"; };
 		A468599ABC5B0980214C95ECE961CA52 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A4FFBBA507E424CB53F47F26974E47FB /* Primitives.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Primitives.swift; sourceTree = "<group>"; };
+		C3FD3DE8044CB6A9BA6AF6F0BE6DE4DD /* Reference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reference.swift; sourceTree = "<group>"; };
 		CBC69A8F90E63FB64A299EBE9F3E9773 /* EmptyComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyComponent.swift; sourceTree = "<group>"; };
 		D56FC23781B063907026A0F2E0697419 /* ChildComponent+Binding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChildComponent+Binding.swift"; sourceTree = "<group>"; };
 		ECA687616426CD2504F240CB08E60545 /* DiezTargetTestStub.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DiezTargetTestStub.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -56,6 +58,7 @@
 				7196CF7776EBC53EF094F8EBE61C7FF5 /* ChildComponent.swift */,
 				CBC69A8F90E63FB64A299EBE9F3E9773 /* EmptyComponent.swift */,
 				A4FFBBA507E424CB53F47F26974E47FB /* Primitives.swift */,
+				C3FD3DE8044CB6A9BA6AF6F0BE6DE4DD /* Reference.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -220,6 +223,7 @@
 				0159A67BDE128ECCEB4142640B86AF91 /* ChildComponent.swift in Sources */,
 				B672C842C746C39F14BF05164B4200CA /* EmptyComponent.swift in Sources */,
 				14E7D1680F468073F59CE1A51E650F63 /* Primitives.swift in Sources */,
+				FBD41B0CC2B12DA22CFF7CF27D2FACD9 /* Reference.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

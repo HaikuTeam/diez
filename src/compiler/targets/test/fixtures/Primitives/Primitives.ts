@@ -12,10 +12,18 @@ class ChildComponent extends prefab<ChildComponentData>() {
 
 class EmptyComponent {}
 
+const reference = {
+  something: 'this is a reference',
+};
+
 /**
  * Test object comment
  */
 export const primitives = {
+  /**
+   * Test nested reference
+   */
+  reference,
   /**
    * Test property comment
    */

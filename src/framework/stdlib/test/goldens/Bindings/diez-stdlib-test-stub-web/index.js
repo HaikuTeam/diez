@@ -81,22 +81,26 @@ module.exports.Diez = Diez;
 Provides a container for referencing local assets, which can be bridged by compilers to embed images, SVGs,
 and more. This component is used internally by [[Image]] and [[Font]].
 
-The compiler may enforce certain restrictions on the `type` of a `File` instance.
+The compiler may enforce certain restrictions on the &#x60;type&#x60; of a &#x60;File&#x60; instance.
 
-Usage: `file = new File({src: 'assets/images/file.jpg', type: FileType.Image});`.
+Usage: &#x60;file &#x3D; new File({src: &#x27;assets/images/file.jpg&#x27;, type: FileType.Image});&#x60;.
 */
 class File {
   constructor({
     src,
     type
   }) {
-  /**
-  File data.
-  */
+    /**
+File data.
+
+Value: &quot;assets/image%20with%20spaces.jpg&quot;
+*/
     this.src = src;
-  /**
-  File data.
-  */
+    /**
+File data.
+
+Value: &quot;image&quot;
+*/
     this.type = type;
   }
 }
@@ -115,20 +119,24 @@ Object.defineProperties(File.prototype, {
 /**
 Provides a two dimensional size.
 
-Usage: `size = Size2D.make(1920, 1080);`.
+Usage: &#x60;size &#x3D; Size2D.make(1920, 1080);&#x60;.
 */
 class Size2D {
   constructor({
     width,
     height
   }) {
-  /**
-  Size data.
-  */
+    /**
+Size data.
+
+Value: 246
+*/
     this.width = width;
-  /**
-  Size data.
-  */
+    /**
+Size data.
+
+Value: 246
+*/
     this.height = height;
   }
 }
@@ -157,7 +165,7 @@ Object.defineProperties(Size2D.prototype, {
 /**
 Provides an abstraction for raster images. With bindings, this component can embed images in multiple platforms in
 accordance with best practices. Images should provide pixel ratios for standard, @2x, @3x, and @4x with conventional
-file naming. The availability of retina resolutions is expected to be a compile-time concern, and the "src" of the
+file naming. The availability of retina resolutions is expected to be a compile-time concern, and the &quot;src&quot; of the
 image is expected to exist and provide an image with the specified dimensions.
 */
 class Image {
@@ -167,21 +175,29 @@ class Image {
     file3x,
     size
   }) {
-    /**
-    Responsive image data.
-    **/
+      /**
+Responsive image data.
+
+Value: {src: &quot;assets/image%20with%20spaces.jpg&quot;, type: &quot;image&quot;}
+*/
     this.file = new File(file);
-    /**
-    Responsive image data.
-    **/
+      /**
+Responsive image data.
+
+Value: {src: &quot;assets/image%20with%20spaces@2x.jpg&quot;, type: &quot;image&quot;}
+*/
     this.file2x = new File(file2x);
-    /**
-    Responsive image data.
-    **/
+      /**
+Responsive image data.
+
+Value: {src: &quot;assets/image%20with%20spaces@3x.jpg&quot;, type: &quot;image&quot;}
+*/
     this.file3x = new File(file3x);
-    /**
-    Responsive image data.
-    **/
+      /**
+Responsive image data.
+
+Value: {width: 246, height: 246}
+*/
     this.size = new Size2D(size);
   }
 }
@@ -222,17 +238,23 @@ class Lottie {
     loop,
     autoplay
   }) {
-    /**
-    Lottie data.
-    **/
+      /**
+Lottie data.
+
+Value: {src: &quot;assets/lottie.json&quot;, type: &quot;raw&quot;}
+*/
     this.file = new File(file);
-  /**
-  Lottie data.
-  */
+    /**
+Lottie data.
+
+Value: true
+*/
     this.loop = loop;
-  /**
-  Lottie data.
-  */
+    /**
+Lottie data.
+
+Value: true
+*/
     this.autoplay = autoplay;
   }
 }
@@ -276,25 +298,35 @@ class Font {
     weight,
     style
   }) {
-    /**
-    Font data.
-    **/
+      /**
+Font data.
+
+Value: {src: &quot;assets/SomeFont.ttf&quot;, type: &quot;font&quot;}
+*/
     this.file = new File(file);
-  /**
-  Font data.
-  */
+    /**
+Font data.
+
+Value: &quot;SomeFont&quot;
+*/
     this.name = name;
-  /**
-  Font data.
-  */
+    /**
+Font data.
+
+Value: [&quot;Verdana&quot;, &quot;serif&quot;]
+*/
     this.fallbacks = fallbacks;
-  /**
-  Font data.
-  */
+    /**
+Font data.
+
+Value: 700
+*/
     this.weight = weight;
-  /**
-  Font data.
-  */
+    /**
+Font data.
+
+Value: &quot;normal&quot;
+*/
     this.style = style;
   }
 }
@@ -315,21 +347,29 @@ class Color {
     l,
     a
   }) {
-  /**
-  Provides simple hue-saturation-lightness-alpha color data.
-  */
+    /**
+Provides simple hue-saturation-lightness-alpha color data.
+
+Value: 0.16666666666666666
+*/
     this.h = h;
-  /**
-  Provides simple hue-saturation-lightness-alpha color data.
-  */
+    /**
+Provides simple hue-saturation-lightness-alpha color data.
+
+Value: 1
+*/
     this.s = s;
-  /**
-  Provides simple hue-saturation-lightness-alpha color data.
-  */
+    /**
+Provides simple hue-saturation-lightness-alpha color data.
+
+Value: 0.5
+*/
     this.l = l;
-  /**
-  Provides simple hue-saturation-lightness-alpha color data.
-  */
+    /**
+Provides simple hue-saturation-lightness-alpha color data.
+
+Value: 1
+*/
     this.a = a;
   }
 }
@@ -389,33 +429,47 @@ class Typograph {
     alignment,
     decoration
   }) {
-    /**
-    Typograph data.
-    **/
+      /**
+Typograph data.
+
+Value: {file: {src: &quot;assets/SomeFont.ttf&quot;, type: &quot;font&quot;}, name: &quot;SomeFont&quot;, fallbacks: [&quot;Verdana&quot;, &quot;serif&quot;], weight: 700, style: &quot;normal&quot;}
+*/
     this.font = new Font(font);
-  /**
-  Typograph data.
-  */
-    this.fontSize = fontSize;
     /**
-    Typograph data.
-    **/
+Typograph data.
+
+Value: 50
+*/
+    this.fontSize = fontSize;
+      /**
+Typograph data.
+
+Value: {h: 0.16666666666666666, s: 1, l: 0.5, a: 1}
+*/
     this.color = new Color(color);
-  /**
-  Typograph data.
-  */
+    /**
+Typograph data.
+
+Value: -1
+*/
     this.lineHeight = lineHeight;
-  /**
-  Typograph data.
-  */
+    /**
+Typograph data.
+
+Value: 0
+*/
     this.letterSpacing = letterSpacing;
-  /**
-  Typograph data.
-  */
+    /**
+Typograph data.
+
+Value: &quot;natural&quot;
+*/
     this.alignment = alignment;
-  /**
-  Typograph data.
-  */
+    /**
+Typograph data.
+
+Value: []
+*/
     this.decoration = decoration;
   }
 }
@@ -505,13 +559,17 @@ class GradientStop {
     position,
     color
   }) {
-  /**
-  GradientStop data.
-  */
-    this.position = position;
     /**
-    GradientStop data.
-    **/
+GradientStop data.
+
+Value: 1
+*/
+    this.position = position;
+      /**
+GradientStop data.
+
+Value: {h: 0.6666666666666666, s: 1, l: 0.5, a: 1}
+*/
     this.color = new Color(color);
   }
 }
@@ -526,20 +584,24 @@ Taken alone, points are designated in an abstract space with no inherit dimensio
 context of other prefabs like [[LinearGradient]], points typically should use the standard two dimensional graphics
 space, often normalized in the unit square, where x increases from left to right and y increases from top to bottom.
 
-Usage: `point = Point2D.make(0.5, 0.5);`.
+Usage: &#x60;point &#x3D; Point2D.make(0.5, 0.5);&#x60;.
 */
 class Point2D {
   constructor({
     x,
     y
   }) {
-  /**
-  Point data.
-  */
+    /**
+Point data.
+
+Value: 0
+*/
     this.x = x;
-  /**
-  Point data.
-  */
+    /**
+Point data.
+
+Value: 0.5
+*/
     this.y = y;
   }
 }
@@ -557,13 +619,17 @@ class LinearGradient {
     end
   }) {
     this.stops = stops.map((value1) => new GradientStop(value1));
-    /**
-    LinearGradient data.
-    **/
+      /**
+LinearGradient data.
+
+Value: {x: 0, y: 0.5}
+*/
     this.start = new Point2D(start);
-    /**
-    LinearGradient data.
-    **/
+      /**
+LinearGradient data.
+
+Value: {x: 1, y: 0.5}
+*/
     this.end = new Point2D(end);
   }
 }
@@ -604,17 +670,23 @@ class DropShadow {
     radius,
     color
   }) {
-    /**
-    DropShadow data.
-    **/
+      /**
+DropShadow data.
+
+Value: {x: 1, y: 2}
+*/
     this.offset = new Point2D(offset);
-  /**
-  DropShadow data.
-  */
-    this.radius = radius;
     /**
-    DropShadow data.
-    **/
+DropShadow data.
+
+Value: 3
+*/
+    this.radius = radius;
+      /**
+DropShadow data.
+
+Value: {h: 0.3333333333333333, s: 1, l: 0.5, a: 0.5}
+*/
     this.color = new Color(color);
   }
 }
@@ -672,17 +744,23 @@ class Fill {
     linearGradient,
     type
   }) {
-    /**
-    Fill data.
-    **/
+      /**
+Fill data.
+
+Value: {h: 0, s: 1, l: 0.5, a: 1}
+*/
     this.color = new Color(color);
-    /**
-    Fill data.
-    **/
+      /**
+Fill data.
+
+Value: {stops: [{position: 0, color: {h: 0, s: 0, l: 0, a: 1}}, {position: 1, color: {h: 0, s: 0, l: 1, a: 1}}], start: {x: 0, y: 0}, end: {x: 1, y: 1}}
+*/
     this.linearGradient = new LinearGradient(linearGradient);
-  /**
-  Fill data.
-  */
+    /**
+Fill data.
+
+Value: &quot;Color&quot;
+*/
     this.type = type;
   }
 }
@@ -699,17 +777,23 @@ class Panel {
     background,
     dropShadow
   }) {
-  /**
-  Panel data.
-  */
+    /**
+Panel data.
+
+Value: 5
+*/
     this.cornerRadius = cornerRadius;
-    /**
-    Panel data.
-    **/
+      /**
+Panel data.
+
+Value: {color: {h: 0.6666666666666666, s: 1, l: 0.5, a: 1}, linearGradient: {stops: [{position: 0, color: {h: 0, s: 0, l: 0, a: 1}}, {position: 1, color: {h: 0, s: 0, l: 1, a: 1}}], start: {x: 0, y: 0}, end: {x: 1, y: 1}}, type: &quot;Color&quot;}
+*/
     this.background = new Fill(background);
-    /**
-    Panel data.
-    **/
+      /**
+Panel data.
+
+Value: {offset: {x: 2, y: 3}, radius: 4, color: {h: 0, s: 1, l: 0.5, a: 1}}
+*/
     this.dropShadow = new DropShadow(dropShadow);
   }
 }
@@ -731,6 +815,9 @@ Object.defineProperties(Panel.prototype, {
   },
 });
 
+/**
+
+*/
 class Bindings {
   constructor({
     image = {file: {src: "assets/image%20with%20spaces.jpg", type: "image"}, file2x: {src: "assets/image%20with%20spaces@2x.jpg", type: "image"}, file3x: {src: "assets/image%20with%20spaces@3x.jpg", type: "image"}, size: {width: 246, height: 246}},
@@ -746,17 +833,53 @@ class Bindings {
     color = {h: 0, s: 0, l: 0, a: 1},
     file = {src: "assets/SomeFile.txt", type: "raw"}
   } = {}) {
+      /**
+Value: {file: {src: &quot;assets/image%20with%20spaces.jpg&quot;, type: &quot;image&quot;}, file2x: {src: &quot;assets/image%20with%20spaces@2x.jpg&quot;, type: &quot;image&quot;}, file3x: {src: &quot;assets/image%20with%20spaces@3x.jpg&quot;, type: &quot;image&quot;}, size: {width: 246, height: 246}}
+*/
     this.image = new Image(image);
+      /**
+Value: {file: {src: &quot;assets/lottie.json&quot;, type: &quot;raw&quot;}, loop: true, autoplay: true}
+*/
     this.lottie = new Lottie(lottie);
+      /**
+Value: {font: {file: {src: &quot;assets/SomeFont.ttf&quot;, type: &quot;font&quot;}, name: &quot;SomeFont&quot;, fallbacks: [&quot;Verdana&quot;, &quot;serif&quot;], weight: 700, style: &quot;normal&quot;}, fontSize: 50, color: {h: 0.16666666666666666, s: 1, l: 0.5, a: 1}, lineHeight: -1, letterSpacing: 0, alignment: &quot;natural&quot;, decoration: []}
+*/
     this.typograph = new Typograph(typograph);
+      /**
+Value: {font: {file: {src: &quot;assets/SomeFont.ttf&quot;, type: &quot;font&quot;}, name: &quot;SomeFont&quot;, fallbacks: [&quot;Verdana&quot;, &quot;serif&quot;], weight: 700, style: &quot;normal&quot;}, fontSize: 50, color: {h: 0, s: 0, l: 0, a: 1}, lineHeight: 100, letterSpacing: 10, alignment: &quot;natural&quot;, decoration: [&quot;underline&quot;, &quot;strikethrough&quot;]}
+*/
     this.tallTypograph = new Typograph(tallTypograph);
+      /**
+Value: {stops: [{position: 0, color: {h: 0, s: 1, l: 0.5, a: 1}}, {position: 1, color: {h: 0.6666666666666666, s: 1, l: 0.5, a: 1}}], start: {x: 0, y: 0.5}, end: {x: 1, y: 0.5}}
+*/
     this.linearGradient = new LinearGradient(linearGradient);
+      /**
+Value: {x: 0.5, y: 0.5}
+*/
     this.point = new Point2D(point);
+      /**
+Value: {width: 400, height: 300}
+*/
     this.size = new Size2D(size);
+      /**
+Value: {offset: {x: 1, y: 2}, radius: 3, color: {h: 0.3333333333333333, s: 1, l: 0.5, a: 0.5}}
+*/
     this.shadow = new DropShadow(shadow);
+      /**
+Value: {color: {h: 0, s: 1, l: 0.5, a: 1}, linearGradient: {stops: [{position: 0, color: {h: 0, s: 0, l: 0, a: 1}}, {position: 1, color: {h: 0, s: 0, l: 1, a: 1}}], start: {x: 0, y: 0}, end: {x: 1, y: 1}}, type: &quot;Color&quot;}
+*/
     this.fill = new Fill(fill);
+      /**
+Value: {cornerRadius: 5, background: {color: {h: 0.6666666666666666, s: 1, l: 0.5, a: 1}, linearGradient: {stops: [{position: 0, color: {h: 0, s: 0, l: 0, a: 1}}, {position: 1, color: {h: 0, s: 0, l: 1, a: 1}}], start: {x: 0, y: 0}, end: {x: 1, y: 1}}, type: &quot;Color&quot;}, dropShadow: {offset: {x: 2, y: 3}, radius: 4, color: {h: 0, s: 1, l: 0.5, a: 1}}}
+*/
     this.panel = new Panel(panel);
+      /**
+Value: {h: 0, s: 0, l: 0, a: 1}
+*/
     this.color = new Color(color);
+      /**
+Value: {src: &quot;assets/SomeFile.txt&quot;, type: &quot;raw&quot;}
+*/
     this.file = new File(file);
   }
 }

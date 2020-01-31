@@ -3,6 +3,10 @@ import UIKit
 @objc(DEZPrimitives)
 public final class Primitives: NSObject, RootComponent {
     /**
+    Test nested reference
+    */
+    @objc public internal(set) var reference: Reference
+    /**
     Test property comment
     */
     @objc public internal(set) var number: CGFloat
@@ -19,6 +23,10 @@ public final class Primitives: NSObject, RootComponent {
 
     convenience public override init() {
         self.init(
+              /**
+              Test nested reference
+              */
+            reference: Reference(),
               /**
               Test property comment
               */
@@ -37,6 +45,7 @@ public final class Primitives: NSObject, RootComponent {
     }
 
     init(
+        reference: Reference,
         number: CGFloat,
         integer: Int,
         float: CGFloat,
@@ -49,6 +58,7 @@ public final class Primitives: NSObject, RootComponent {
         childs: [[ChildComponent]],
         emptyChild: EmptyComponent
     ) {
+        self.reference = reference
         self.number = number
         self.integer = integer
         self.float = float

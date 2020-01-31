@@ -1,5 +1,6 @@
 
 :root {
+  --reference-something: "this is a reference";
   --primitives-number: 10;
   --primitives-number-px: 10px;
   --primitives-number-pt: 10pt;

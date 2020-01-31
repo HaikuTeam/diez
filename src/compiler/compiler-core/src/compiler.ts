@@ -214,7 +214,7 @@ export abstract class Compiler<
         instance.options[property.name] &&
         Array.isArray(instance.options[property.name].targets) &&
         !instance.options[property.name].targets.includes(this.parser.options.target)
-        ) {
+      ) {
         // We are looking at a property that is either not a state or explicitly excluded by the host.
         continue;
       }

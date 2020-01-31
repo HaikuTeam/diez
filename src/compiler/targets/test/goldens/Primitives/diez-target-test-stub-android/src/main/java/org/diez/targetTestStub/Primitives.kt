@@ -5,6 +5,10 @@ package org.diez.targetTestStub
 */
 data class Primitives(
     /**
+      Test nested reference
+    */
+    val reference: Reference = Reference(),
+    /**
       Test property comment
     */
     val number: Float = 10f,
