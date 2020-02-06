@@ -1,6 +1,6 @@
 {
-  "name": "diez-stdlib-test-stub",
-  "version": "10.10.10",
+  "name": "diez-lorem-ipsum",
+  "version": "10.2.1",
   "license": "MIT",
   "main": "./index.js",
   "exports": {
@@ -8,7 +8,7 @@
     "import": "./wrapper.mjs"
   },
   "dependencies": {
-    "lottie-web": "^5.5.2",
-    "@diez/web-sdk-common": "^10.2.0"
+    "@diez/web-sdk-common": "^10.2.1",
+    "lottie-web": "^5.5.2"
   }
 }
