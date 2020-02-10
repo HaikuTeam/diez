@@ -65,15 +65,19 @@ export const commentHelper = (property: TargetProperty) => {
     commentLines.push(property.description.body);
   }
 
-  if (property.initializer) {
-    commentLines.push(`Value: ${property.initializer}`);
-  }
-
   if (property.references && property.references.length) {
-    commentLines.push(...property.references.map((ref) => `${ref.parentType}.${ref.name}`));
+    commentLines.push(...property.references.map(({parentMetadata, parentType, name}) => {
+      const parent = parentMetadata ? parentMetadata.symbolName : parentType;
+      return `\`${parent}.${name}\` (${property.prettyValue})`;
+    }));
+  } else if (property.prettyValue) {
+    commentLines.push(property.prettyValue);
   }
 
-  const parsedCommentLines = commentLines.join('\n\n');
+  if (commentLines.length) {
+    const parsedCommentLines = commentLines.map((line) => `\n *\n * ${line}`).join('');
+    return `/**${parsedCommentLines}\n */`;
+  }
 
-  return `/**\n${parsedCommentLines}\n*/`;
+  return '';
 };

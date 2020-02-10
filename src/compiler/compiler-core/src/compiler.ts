@@ -52,6 +52,47 @@ export abstract class Compiler<
    */
   protected abstract getInitializer (targetComponent: TargetDiezComponent): string;
 
+  private getPrettyValue (type: DiezType, serializedInstance: any): string {
+    if (!serializedInstance) {
+      return '';
+    }
+
+    const round = (n: number) => {
+      return Math.round(n * 100) / 100;
+    };
+
+    /**
+     * User friendly, rounded representation of a color in HSLA format.
+     */
+    const displayableHsla = (hsl: any) => {
+      return `hsla(${round(hsl.h)}, ${round(hsl.s)}, ${round(hsl.l)}, ${round(hsl.a)})`;
+    };
+
+
+    switch (type.toString()) {
+      case 'Color':
+        return displayableHsla(serializedInstance);
+      case 'DropShadow':
+        return `color: ${this.getPrettyValue('Color', serializedInstance.color)}, offset: ${this.getPrettyValue('Point2D', serializedInstance.offset)}, radius: ${serializedInstance.radius}`;
+      case 'File':
+        return 'file, fixme';
+      case 'Fill':
+        return `color: ${this.getPrettyValue('Color', serializedInstance.color)}`;
+      case 'Image':
+        return `file: ${serializedInstance.file}`;
+      case 'LinearGradient':
+        return `color: ${this.getPrettyValue('Color', serializedInstance.color)}, start: ${this.getPrettyValue('Point2D', serializedInstance.start)}, end: ${this.getPrettyValue('Point2D', serializedInstance.end)}`;
+      case 'Panel':
+        return `radius: ${serializedInstance.radius}, elevation: ${serializedInstance.elevation}`;
+      case 'Point2D':
+        return `[${serializedInstance.x}, ${serializedInstance.y}]`;
+      case 'Size2D':
+        return `width: ${serializedInstance.width}, height: ${serializedInstance.height}`;
+      default:
+        return '';
+    }
+  }
+
   /**
    * Gets the target-specific primitive type name for the provided type.
    *
@@ -187,7 +228,14 @@ export abstract class Compiler<
         }
       }
 
-      return Object.assign({originalType: property.type}, property, {initializer: this.getInitializer(targetComponent)});
+      return Object.assign(
+        {originalType: property.type},
+        property,
+        {
+          initializer: this.getInitializer(targetComponent),
+          prettyValue: this.getPrettyValue(property.type, serializedInstance),
+        },
+      );
     }
 
     return this.getPrimitive(property, serializedInstance);

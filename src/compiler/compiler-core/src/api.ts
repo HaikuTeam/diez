@@ -97,6 +97,7 @@ export interface PropertyReference {
    * The name of the property from the parent.
    */
   name: string;
+  parentMetadata?: DiezTypeMetadata;
 }
 
 /**
@@ -325,6 +326,8 @@ export interface TargetProperty extends Property {
    * for specifying array/list types correctly or declaring primitives.
    */
   originalType?: DiezType;
+
+  prettyValue?: string;
 }
 
 /**

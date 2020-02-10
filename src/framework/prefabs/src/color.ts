@@ -75,7 +75,7 @@ export class Color extends prefab<ColorData>() {
     const l = (min + max) / 2;
     const s = getSaturation(min, max, l);
     const h = normalizeHue(getHue(min, max, r, g, b));
-    return new Color({h, s, l, a});
+    return new Color({h, s, l, a}, {colorModel: 'rgba'});
   }
 
   /**

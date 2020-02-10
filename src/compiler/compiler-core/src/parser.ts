@@ -196,6 +196,7 @@ export class ProjectParser extends EventEmitter implements Parser {
         path,
         parentType,
         name: expression.getName(),
+        parentMetadata: this.typeManifest.get(parentType),
       });
       return;
     }
