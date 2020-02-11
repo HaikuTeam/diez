@@ -1,5 +1,5 @@
 /* tslint:disable:max-line-length */
-import {canRunCommand, Format, getPackageManager, isChildProcess, isMacOS, locateBinaryMacOS, Log} from '@diez/cli-core';
+import {canRunCommand, Format, getPackageManager, isChildProcess, isMacOS, loadingMessage, locateBinaryMacOS, Log} from '@diez/cli-core';
 import {Target} from '@diez/engine';
 import {ChildProcess, execSync, fork, spawn} from 'child_process';
 import {readdirSync} from 'fs-extra';
@@ -48,21 +48,22 @@ export = async (_: {}, target: Target) => {
   const guideUrl = guideUrls[target];
   switch (target) {
     case Target.Android:
-      execSync(`${diez} compile -t android`, {stdio: 'inherit'});
+      packageManager.execBinary('diez compile -t android', {stdio: 'inherit'});
       Log.comment('Starting the Diez hot server...');
       hotProcess = fork(diez, ['hot', '-t', 'android'], {stdio: 'inherit'});
       break;
     case Target.Ios:
-      execSync(`${diez} compile -t ios --cocoapods`, {stdio: 'inherit'});
+      packageManager.execBinary('diez compile -t ios --cocoapods', {stdio: 'inherit'});
       Log.comment('Installing CocoaPods dependencies in example codebase...');
       execSync('pod install', {cwd: targetRoot, stdio: 'inherit'});
       Log.comment('Starting the Diez hot server...');
       hotProcess = fork(diez, ['hot', '-t', 'ios'], {stdio: 'inherit'});
       break;
     case Target.Web:
-      execSync(`${diez} compile -t web`, {stdio: 'inherit'});
-      Log.comment('Installing Node dependencies in example codebase...');
-      await packageManager.installAllDependencies({cwd: targetRoot, stdio: 'inherit'});
+      packageManager.execBinary('diez compile -t web', {stdio: 'inherit'});
+      const installingMessage = loadingMessage('Installing Node dependencies in example codebase...');
+      await packageManager.installAllDependencies({cwd: targetRoot});
+      installingMessage.stop();
       Log.comment('Starting the Diez hot server...');
       hotProcess = fork(diez, ['hot', '-t', 'web'], {stdio: 'inherit'});
       break;
