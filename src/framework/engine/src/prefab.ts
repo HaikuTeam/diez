@@ -26,8 +26,7 @@ export abstract class Prefab<T extends object> implements Serializable<T> {
    */
   readonly options: Partial<{[K in keyof T]: Partial<PropertyOptions>}> = {};
 
-  constructor (private readonly overrides: Partial<T> = {}, private readonly diezMetadata: Record<string, any> = {}) {
-    this.diezMetadata = diezMetadata;
+  constructor (private readonly overrides: Partial<T> = {}, protected readonly __diezMetadata: Record<string, any> = {}) {
     // Build a proxy through which we can implement T, which is not statically known at compile time.
     const proxy = new Proxy(this, this);
 
@@ -77,7 +76,7 @@ export abstract class Prefab<T extends object> implements Serializable<T> {
    * Generic serialization instructions. These can be overridden as needed.
    */
   serialize () {
-    return serialize(this.sanitize(Object.assign(this.defaults, this.overrides, {diezMetadata: this.diezMetadata})));
+    return serialize(this.sanitize(Object.assign(this.defaults, this.overrides, {diezMetadata: this.__diezMetadata})));
   }
 }
 

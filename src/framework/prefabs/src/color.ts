@@ -10,6 +10,15 @@ export interface ColorData {
   a: number;
 }
 
+/**
+ * Describes valid color models to use with the Color prefab.
+ */
+export enum ColorModel {
+  Hex,
+  Rgba,
+  Hsla,
+}
+
 const getSaturation = (min: number, max: number, lightness: number) => {
   if (min === max) {
     return 0;
@@ -44,7 +53,21 @@ const getHue = (min: number, max: number, r: number, g: number, b: number) => {
 
 const normalizeUnit = (x: number) => (Math.abs(x) > 1 ? x % 1 : x);
 
-const hexRgb = (r: number, g: number, b: number, a: number = 255) => Color.rgba(r, g, b, a / 255);
+const hexRgb = (r: number, g: number, b: number, a: number = 255) => {
+  return new Color(rgbaHsla(r, g, b, a), {colorModel: ColorModel.Hex});
+};
+
+const rgbaHsla = (rIn: number, gIn: number, bIn: number, a: number) => {
+  const r = rIn / 255;
+  const g = gIn / 255;
+  const b = bIn / 255;
+  const min = Math.min(r, g, b);
+  const max = Math.max(r, g, b);
+  const l = (min + max) / 2;
+  const s = getSaturation(min, max, l);
+  const h = normalizeHue(getHue(min, max, r, g, b));
+  return {h, s, l, a};
+}
 
 /**
  * A component encapsulating color, including alpha transparency.
@@ -67,15 +90,7 @@ export class Color extends prefab<ColorData>() {
    * `red = Color.rgba(255, 0, 0, 1);`
    */
   static rgba (rIn: number, gIn: number, bIn: number, a: number) {
-    const r = rIn / 255;
-    const g = gIn / 255;
-    const b = bIn / 255;
-    const min = Math.min(r, g, b);
-    const max = Math.max(r, g, b);
-    const l = (min + max) / 2;
-    const s = getSaturation(min, max, l);
-    const h = normalizeHue(getHue(min, max, r, g, b));
-    return new Color({h, s, l, a}, {colorModel: 'rgba'});
+    return new Color(rgbaHsla(rIn, gIn, bIn, a), {colorModel: ColorModel.Rgba});
   }
 
   /**
@@ -93,7 +108,7 @@ export class Color extends prefab<ColorData>() {
    * `red = Color.hsla(0, 1, 0.5, 1);`
    */
   static hsla (h: number, s: number, l: number, a: number) {
-    return new Color({h, s, l, a});
+    return new Color({h, s, l, a}, {colorModel: ColorModel.Hsla});
   }
 
   /**
@@ -140,6 +155,9 @@ export class Color extends prefab<ColorData>() {
       s: normalizeUnit(data.s),
       l: normalizeUnit(data.l),
       a: normalizeUnit(data.a),
+      __diezMetadata: {
+        colorModel: this.__diezMetadata.colorModel || ColorModel.Hsla
+      }
     };
   }
 

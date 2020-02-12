@@ -6,7 +6,7 @@ import {copySync, ensureDirSync, existsSync, outputFileSync, removeSync, writeFi
 import {dirname, join} from 'path';
 import {CompilerEvent, DiezComponent, DiezType, MaybeNestedArray, Parser, Property, TargetBinding, TargetDiezComponent, TargetOutput, TargetProperty} from './api';
 import {serveHot} from './server';
-import {ExistingHotUrlMutexError, getBinding, getHotPort, inferProjectName, isConstructible, loadComponentModule, purgeRequireCache, showStackTracesFromRuntimeError} from './utils';
+import {ExistingHotUrlMutexError, getBinding, getHotPort, inferProjectName, isConstructible, loadComponentModule, purgeRequireCache, showStackTracesFromRuntimeError, getPrettyValue} from './utils';
 
 /**
  * An abstract class wrapping the basic functions of a compiler.
@@ -51,47 +51,6 @@ export abstract class Compiler<
    * This might look like `"foo"` for a primitive type, or `new ComponentType()` for a component.
    */
   protected abstract getInitializer (targetComponent: TargetDiezComponent): string;
-
-  private getPrettyValue (type: DiezType, serializedInstance: any): string {
-    if (!serializedInstance) {
-      return '';
-    }
-
-    const round = (n: number) => {
-      return Math.round(n * 100) / 100;
-    };
-
-    /**
-     * User friendly, rounded representation of a color in HSLA format.
-     */
-    const displayableHsla = (hsl: any) => {
-      return `hsla(${round(hsl.h)}, ${round(hsl.s)}, ${round(hsl.l)}, ${round(hsl.a)})`;
-    };
-
-
-    switch (type.toString()) {
-      case 'Color':
-        return displayableHsla(serializedInstance);
-      case 'DropShadow':
-        return `color: ${this.getPrettyValue('Color', serializedInstance.color)}, offset: ${this.getPrettyValue('Point2D', serializedInstance.offset)}, radius: ${serializedInstance.radius}`;
-      case 'File':
-        return 'file, fixme';
-      case 'Fill':
-        return `color: ${this.getPrettyValue('Color', serializedInstance.color)}`;
-      case 'Image':
-        return `file: ${serializedInstance.file}`;
-      case 'LinearGradient':
-        return `color: ${this.getPrettyValue('Color', serializedInstance.color)}, start: ${this.getPrettyValue('Point2D', serializedInstance.start)}, end: ${this.getPrettyValue('Point2D', serializedInstance.end)}`;
-      case 'Panel':
-        return `radius: ${serializedInstance.radius}, elevation: ${serializedInstance.elevation}`;
-      case 'Point2D':
-        return `[${serializedInstance.x}, ${serializedInstance.y}]`;
-      case 'Size2D':
-        return `width: ${serializedInstance.width}, height: ${serializedInstance.height}`;
-      default:
-        return '';
-    }
-  }
 
   /**
    * Gets the target-specific primitive type name for the provided type.
@@ -233,7 +192,7 @@ export abstract class Compiler<
         property,
         {
           initializer: this.getInitializer(targetComponent),
-          prettyValue: this.getPrettyValue(property.type, serializedInstance),
+          prettyValue: getPrettyValue(property.type, serializedInstance),
         },
       );
     }

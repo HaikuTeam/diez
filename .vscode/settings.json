@@ -7,8 +7,9 @@
   },
   "typescript.format.enable": false,
   "typescript.tsdk": "node_modules/typescript/lib",
-  "workbench.colorCustomizations": {
-    "editorWarning.foreground": "#00000000",
+  "tslint.jsEnable": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.tslint": true
   },
   "files.associations": {
     ".diezrc": "json"
