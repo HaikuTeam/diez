@@ -37,4 +37,8 @@ export class Point2D extends prefab<Point2DData>() {
   static make (x: number, y: number) {
     return new Point2D({x, y});
   }
+
+  prettyValue () {
+    return `[${this.x}, ${this.y}]`;
+  }
 }

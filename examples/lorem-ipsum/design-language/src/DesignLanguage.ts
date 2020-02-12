@@ -1,4 +1,4 @@
-import {Color, DropShadow, Image, Lottie, Toward, Typograph, Font, LinearGradient, Point2D, TextAlignment} from '@diez/prefabs';
+import {Color, DropShadow, Image, Lottie, Toward, Typograph, Font, LinearGradient, Point2D, TextAlignment, Panel} from '@diez/prefabs';
 import {Margin} from './components/Margin';
 
 /**
@@ -102,6 +102,10 @@ const shadows = {
   }),
 }
 
+const panels = {
+  firstPanel: new Panel()
+}
+
 /**
  * Note how this component is exported from `index.ts`. Diez compiles these
  * exported components for your apps' codebases.
@@ -124,5 +128,6 @@ export const designLanguage = {
   layoutValues,
   strings,
   shadows,
+  panels,
   loadingAnimation: Lottie.fromJson('assets/loadingAnimation.json', false),
 }

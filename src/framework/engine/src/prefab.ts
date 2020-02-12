@@ -1,5 +1,5 @@
 import {PropertyOptions, Serializable} from './api';
-import {serialize} from './serialization';
+import {serialize, prettyPrint} from './serialization';
 
 /**
  * The abstract Prefab class provides a harness for reusable, instantiable design token prefabs.
@@ -26,7 +26,7 @@ export abstract class Prefab<T extends object> implements Serializable<T> {
    */
   readonly options: Partial<{[K in keyof T]: Partial<PropertyOptions>}> = {};
 
-  constructor (private readonly overrides: Partial<T> = {}, protected readonly __diezMetadata: Record<string, any> = {}) {
+  constructor (private readonly overrides: Partial<T> = {}) {
     // Build a proxy through which we can implement T, which is not statically known at compile time.
     const proxy = new Proxy(this, this);
 
@@ -70,20 +70,24 @@ export abstract class Prefab<T extends object> implements Serializable<T> {
     return data;
   }
 
+  prettyValue (): string {
+    return prettyPrint(this.sanitize(Object.assign(this.defaults, this.overrides)));
+  }
+
   /**
    * Serializable<T> interface.
    *
    * Generic serialization instructions. These can be overridden as needed.
    */
   serialize () {
-    return serialize(this.sanitize(Object.assign(this.defaults, this.overrides, {diezMetadata: this.__diezMetadata})));
+    return serialize(this.sanitize(Object.assign(this.defaults, this.overrides)));
   }
 }
 
 /**
  * A typing which acknowledges the Proxy by which Prefab<T> actually implements T.
  */
-type PrefabConstructor<T extends object> = new (overrides?: Partial<T>, diezMetadata?: Record<string, any>) => Prefab<T> & T;
+type PrefabConstructor<T extends object> = new (overrides?: Partial<T>) => Prefab<T> & T;
 
 /**
  * A factory for prefab base classes. All prefabs should be implemented as concrete classes extending

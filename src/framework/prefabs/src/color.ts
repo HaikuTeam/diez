@@ -51,10 +51,14 @@ const getHue = (min: number, max: number, r: number, g: number, b: number) => {
   return 4 + (r - g) / (max - min);
 };
 
+const round = (n: number) => {
+  return Math.round(n * 100) / 100;
+};
+
 const normalizeUnit = (x: number) => (Math.abs(x) > 1 ? x % 1 : x);
 
 const hexRgb = (r: number, g: number, b: number, a: number = 255) => {
-  return new Color(rgbaHsla(r, g, b, a), {colorModel: ColorModel.Hex});
+  return new Color(rgbaHsla(r, g, b, a));
 };
 
 const rgbaHsla = (rIn: number, gIn: number, bIn: number, a: number) => {
@@ -90,7 +94,7 @@ export class Color extends prefab<ColorData>() {
    * `red = Color.rgba(255, 0, 0, 1);`
    */
   static rgba (rIn: number, gIn: number, bIn: number, a: number) {
-    return new Color(rgbaHsla(rIn, gIn, bIn, a), {colorModel: ColorModel.Rgba});
+    return new Color(rgbaHsla(rIn, gIn, bIn, a));
   }
 
   /**
@@ -108,7 +112,7 @@ export class Color extends prefab<ColorData>() {
    * `red = Color.hsla(0, 1, 0.5, 1);`
    */
   static hsla (h: number, s: number, l: number, a: number) {
-    return new Color({h, s, l, a}, {colorModel: ColorModel.Hsla});
+    return new Color({h, s, l, a});
   }
 
   /**
@@ -155,10 +159,11 @@ export class Color extends prefab<ColorData>() {
       s: normalizeUnit(data.s),
       l: normalizeUnit(data.l),
       a: normalizeUnit(data.a),
-      __diezMetadata: {
-        colorModel: this.__diezMetadata.colorModel || ColorModel.Hsla
-      }
     };
+  }
+
+  prettyValue () {
+    return `hsla(${round(this.h)}, ${round(this.s)}, ${round(this.l)}, ${round(this.a)})`;
   }
 
   /**

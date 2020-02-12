@@ -7,6 +7,13 @@ export interface Serializable<T> {
 }
 
 /**
+ * TODO
+ */
+export interface PrettyPrintable<T> {
+  prettyValue (): string;
+}
+
+/**
  * A patcher takes any serializable payload and patches it up to its controller.
  */
 export type Patcher = (payload: any) => void;

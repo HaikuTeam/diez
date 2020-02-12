@@ -37,4 +37,8 @@ export class DropShadow extends prefab<DropShadowData>() {
     radius: 0,
     color: Color.rgb(0, 0, 0),
   };
+
+  prettyValue () {
+    return `color: ${this.color.prettyValue()}, offset: ${this.offset.prettyValue()}, radius: ${this.radius}`;
+  }
 }

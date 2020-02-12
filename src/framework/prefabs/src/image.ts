@@ -67,4 +67,8 @@ export class Image extends prefab<ImageData>() {
       targets: [Target.Android],
     },
   };
+
+  prettyValue () {
+    return `file: ${this.file.prettyValue()}, size: ${this.size.prettyValue()}`;
+  }
 }
