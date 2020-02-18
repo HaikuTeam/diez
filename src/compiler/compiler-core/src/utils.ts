@@ -8,6 +8,7 @@ import {Node, Project, TypeGuards} from 'ts-morph';
 import {findConfigFile, sys} from 'typescript';
 import {AcceptableType, AssemblerFactory, CompilerProvider, ComponentModule,
   Constructor, DiezType, NamedComponentMap, PropertyDescription, TargetOutput} from './api';
+import {Property} from './api';
 
 /**
  * A type guard for identifying a [[Constructor]] vs. a plain object.
@@ -375,4 +376,65 @@ export const showStackTracesFromRuntimeError = async (error: Error) => {
   } catch (internalError) {
     Log.error(error.toString());
   }
+};
+
+
+/**
+ * TODO
+ */
+export interface PrettyPrintable<T> {
+  prettyValue (): string;
+}
+
+const isPrettyPrintable = (value: any): value is PrettyPrintable<any> => value && value.prettyValue instanceof Function;
+const isPrimitive = (value: any) => value === null || typeof value !== 'object';
+
+type Result = {
+  value: string;
+  properties: Record<string, string>
+}
+
+export const prettyPrint = (value: any, property?: Property): Result => {
+  const result: Result = {
+    value: '',
+    properties: {}
+  }
+
+  if (property) {
+    for (const reference of property.references) {
+      const parent = reference.parentMetadata ? reference.parentMetadata.symbolName : reference.parentType;
+
+      if(!reference.path.length) {
+        result.value = `${parent}.${reference.name}`;
+        continue;
+      }
+
+      result.properties[reference.path.join('.')] = `${parent}.${reference.name}`;
+    }
+  }
+
+  if (isPrettyPrintable(value)) {
+    result.value = `${result.value} - ${value.prettyValue()}`;
+  }
+
+  // if (Array.isArray(value)) {
+  //   return value.map((val) => prettyPrint(val));
+  // }
+
+  const values = {...value.defaults, ...value.overrides};
+
+  for (const key in values) {
+    const val = values[key];
+
+    if (isPrettyPrintable(val)) {
+      result.properties[key] = `${result.properties[key] || ''} - ${val.prettyValue()}`;
+    }
+
+    if (isPrimitive(val)) {
+      result.properties[key] = `${result.properties[key] || ''} - \`${val}\``;
+    }
+
+  }
+
+  return result;
 };

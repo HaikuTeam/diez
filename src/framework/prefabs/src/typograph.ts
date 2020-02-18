@@ -201,6 +201,10 @@ export class Typograph extends prefab<TypographData>() {
 
     return data;
   }
+
+  prettyValue () {
+    return 'font'
+  }
 }
 
 /**

@@ -86,8 +86,16 @@ const layoutValues = {
 }
 
 /**
- * You can also define strings.
- */
+    The area of the `Shape` instance.
+
+    Computation depends on the shape of the instance.
+    For a triangle, `area` is equivalent to:
+
+    ```
+    let height = triangle.calculateHeight()
+    let area = triangle.base * height / 2
+    ```
+*/
 const strings = {
   title: 'Diez',
   caption: 'Keep your designs in sync with code',

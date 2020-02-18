@@ -1,5 +1,5 @@
 import {PropertyOptions, Serializable} from './api';
-import {serialize, prettyPrint} from './serialization';
+import {serialize} from './serialization';
 
 /**
  * The abstract Prefab class provides a harness for reusable, instantiable design token prefabs.
@@ -71,7 +71,8 @@ export abstract class Prefab<T extends object> implements Serializable<T> {
   }
 
   prettyValue (): string {
-    return prettyPrint(this.sanitize(Object.assign(this.defaults, this.overrides)));
+    return ''
+    // return prettyPrint(this.sanitize(Object.assign(this.defaults, this.overrides)));
   }
 
   /**

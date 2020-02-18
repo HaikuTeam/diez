@@ -58,7 +58,7 @@ export const getUnitedStyleSheetVariables = (name: string, value: string) => {
   });
 };
 
-export const commentHelper = (property: TargetProperty) => {
+export const commentHelper = (property: TargetProperty, indentationLength = 0) => {
   const commentLines: string[] = [];
 
   if (property.description.body) {
@@ -75,7 +75,7 @@ export const commentHelper = (property: TargetProperty) => {
   }
 
   if (commentLines.length) {
-    const parsedCommentLines = commentLines.map((line) => `\n *\n * ${line}`).join('');
+    const parsedCommentLines = commentLines.map((line) => `\n${(new Array(indentationLength)).join(' ')}${line}`).join('');
     return `/**${parsedCommentLines}\n */`;
   }
 
